@@ -1,14 +1,15 @@
 server {
-		listen 80;
-		listen [::]:80;
+	listen 80;
 
-		server_name site.fr;
+	listen [::]:80;
 
-		root /var/www/site;
+	server_name monsite.fr;
 
-		index index.php index.html;
- 
-		location / {
+	root /var/www/site;
+
+	index index.php index.html;
+
+	location / {
 			try_files $uri $uri/ =404;
-		}
+	}
 }
