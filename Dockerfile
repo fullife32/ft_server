@@ -6,6 +6,9 @@ RUN apt-get -y update \
 	&& apt-get -y upgrade \
 	&& apt-get -y install nginx vim php-fpm
 
+RUN rm /etc/nginx/sites-available/default \
+	&& rm /etc/nginx/sites-enabled/default
+
 COPY ./srcs/site /etc/nginx/sites-available/
 
 RUN ln -s /etc/nginx/sites-available/site /etc/nginx/sites-enabled/site \
@@ -13,6 +16,9 @@ RUN ln -s /etc/nginx/sites-available/site /etc/nginx/sites-enabled/site \
 
 COPY ./srcs/index.php /var/www/site/
 
-CMD service nginx restart
+COPY ./srcs/www.conf /etc/php/7.3/fpm/pool.d/
 
-CMD tail -f /dev/null
+CMD service php7.3-fpm start \
+	&& service nginx start
+
+CMD tail -f /dev/random
