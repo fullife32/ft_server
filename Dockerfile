@@ -18,7 +18,7 @@ COPY ./srcs/index.php /var/www/site/
 
 COPY ./srcs/www.conf /etc/php/7.3/fpm/pool.d/
 
-CMD service php7.3-fpm start \
+ENTRYPOINT service php7.3-fpm start \
 	&& service nginx start
 
-CMD tail -f /dev/random
+CMD tail -f /dev/null
