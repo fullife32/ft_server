@@ -1,5 +1,3 @@
-test ok
-
 <?php
 phpinfo();
 ?>

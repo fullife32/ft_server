@@ -4,21 +4,19 @@ LABEL maintainer="eassouli <eassouli@student.42.fr>"
 
 RUN apt-get -y update \
 	&& apt-get -y upgrade \
-	&& apt-get -y install nginx vim php-fpm
+	&& apt-get -y install vim wget \
+	&& apt-get -y install nginx \
+	&& apt-get -y install php-fpm \
+	&& apt-get -y install mariadb-server
 
-RUN rm /etc/nginx/sites-available/default \
-	&& rm /etc/nginx/sites-enabled/default
+COPY ./srcs /root/
 
-COPY ./srcs/site /etc/nginx/sites-available/
+COPY ./srcs/localhost /etc/nginx/sites-available/
 
-RUN ln -s /etc/nginx/sites-available/site /etc/nginx/sites-enabled/site \
-	&& mkdir /var/www/site
+RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 
-COPY ./srcs/index.php /var/www/site/
+COPY ./srcs/index.php /var/www/html/
 
 COPY ./srcs/www.conf /etc/php/7.3/fpm/pool.d/
 
-ENTRYPOINT service php7.3-fpm start \
-	&& service nginx start
-
-CMD tail -f /dev/null
+ENTRYPOINT ["bash", "/root/run.sh"]
