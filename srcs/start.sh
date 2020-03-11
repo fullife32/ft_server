@@ -6,7 +6,7 @@ service php7.3-fpm start
 # Create localhost server
 mkdir /var/www/localhost
 chown -R $USER:$USER /var/www/localhost
-mv /root/localhost /etc/nginx/sites-available/
+mv /root/localhost_on /etc/nginx/sites-available/localhost
 ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 
 # Nginx index
