@@ -1,4 +1,7 @@
-CREATE DATABASE wordpress_database;
-GRANT ALL ON wordpress_database.* TO 'eassouli'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+CREATE DATABASE wordpress;
+GRANT ALL ON wordpress.* TO 'eassouli'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+CREATE DATABASE phpmyadmin;
+GRANT ALL ON phpmyadmin.* TO 'eassouli'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 exit

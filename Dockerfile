@@ -6,7 +6,7 @@ RUN apt-get -y update \
 	&& apt-get -y upgrade \
 	&& apt-get -y install nginx \
 	&& apt-get -y install mariadb-server \
-	&& apt-get -y install php-fpm php-mysql \
+	&& apt-get -y install php-fpm php-mysql php-mbstring \
 	&& apt-get -y install wget
 
 COPY ./srcs/* /root/
