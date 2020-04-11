@@ -1,22 +1,42 @@
 server {
     listen 80;
+    listen [::]:80;
     server_name localhost;
-    return 301 https://localhost$request_uri;
-}
-
-server {
-    listen 443;
-    server_name localhost;
-    ssl on;
-    ssl_certificate /etc/nginx/ssl/certificate.admin-serv.net.crt;
-    ssl_certificate_key /etc/nginx/ssl/admin-serv.net.deprotected.key;
 
     location / {
-        root /var/www/localhost;
+        root /var/www/html;
         index index.php index.html index.htm;
         autoindex on;
         try_files $uri $uri/ =404;
     }
+
+    location /phpmyadmin {
+		index index.php;
+
+		location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico|xml)$ {
+				access_log off;
+				expires 365d;
+		}
+		location ~ /\.ht {
+				deny all;
+		}
+		location ~ /(libraries|setup/frames|setup/libs) {
+				deny all;
+				return 404;
+		}
+	}
+
+    location /wordpress {
+		index index.php;
+
+		location ~* ^.+.(jpg|jpeg|gif|css|png|js|ico|xml)$ {
+				access_log off;
+				expires 365d;
+		}
+		location ~ /\.ht {
+				deny all;
+		}
+	}
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
