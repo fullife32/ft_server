@@ -9,6 +9,8 @@ RUN apt-get -y update \
 	&& apt-get -y install php-fpm php-mysql php-mbstring \
 	&& apt-get -y install wget
 
+ENV AUTOINDEX=ON
+
 COPY ./srcs/* /root/
 
 ENTRYPOINT ["bash", "/root/start.sh"]
