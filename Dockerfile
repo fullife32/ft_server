@@ -4,10 +4,7 @@ LABEL maintainer="eassouli <eassouli@student.42.fr>"
 
 RUN apt-get -y update \
 	&& apt-get -y upgrade \
-	&& apt-get -y install nginx \
-	&& apt-get -y install mariadb-server \
-	&& apt-get -y install php-fpm php-mysql php-mbstring \
-	&& apt-get -y install wget
+	&& apt-get -y install nginx mariadb-server php-fpm php-mysql php-mbstring wget
 
 ENV AUTOINDEX=ON
 
