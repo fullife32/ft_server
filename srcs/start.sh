@@ -3,7 +3,7 @@ service nginx start
 service mysql start
 service php7.3-fpm start
 
-# Create localhost server
+# Move nginx configuration
 if [ $AUTOINDEX = ON ]; then
 	mv /root/nginx-on.conf /etc/nginx/sites-available/localhost
 else
@@ -14,8 +14,8 @@ ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/
 # phpMyAdmin installation and configuration
 wget https://files.phpmyadmin.net/phpMyAdmin/4.9.5/phpMyAdmin-4.9.5-all-languages.tar.gz
 mkdir /var/www/html/phpmyadmin
-tar xzf /phpMyAdmin-4.9.4-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin/
-rm -rf /phpMyAdmin-4.9.4-all-languages.tar.gz
+tar xzf /phpMyAdmin-4.9.5-all-languages.tar.gz --strip-components=1 -C /var/www/html/phpmyadmin/
+rm -rf /phpMyAdmin-4.9.5-all-languages.tar.gz
 mv /root/config.default.php /var/www/html/phpmyadmin/libraries/
 chmod -R 755 /var/www/html/phpmyadmin
 
